@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anlagenportfolio Health-Check — Cernion a2mdm</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="container-fluid">
+  <ul>
+    <li><span class="logo">🔧</span><strong>Cernion Asset-View</strong></li>
+  </ul>
+  <ul>
+    <li><span id="connectionStatus" class="badge">Connecting</span></li>
+  </ul>
+</nav>
+
+<main class="container">
+  <header>
+    <h1>Anlagenportfolio Health-Check</h1>
+    <p>Asset-Manager-Übersicht aller Erzeugungsanlagen im Portfolio</p>
+  </header>
+
+  <nav aria-label="breadcrumb">
+    <ul class="tabs">
+      <li><a href="#" class="tab-link active" data-tab="overview">Übersicht</a></li>
+      <li><a href="#" class="tab-link" data-tab="portfolio">Anlagen</a></li>
+      <li><a href="#" class="tab-link" data-tab="charts">Charts</a></li>
+      <li><a href="#" class="tab-link" data-tab="settings">Einstellungen</a></li>
+    </ul>
+  </nav>
+
+  <section id="overviewTab" class="tab-content active">
+    <div class="grid">
+      <div class="card kpi-card">
+        <h4>Anlagen</h4>
+        <div class="kpi-value" id="totalAssets">0</div>
+        <div class="kpi-sub">Im Portfolio</div>
+      </div>
+      <div class="card kpi-card">
+        <h4>Portfolio-Health</h4>
+        <div class="kpi-value" id="portfolioHealth">0%</div>
+        <div class="kpi-sub">Ø Performance-Ist/Soll</div>
+      </div>
+      <div class="card kpi-card">
+        <h4>EEG läuft aus</h4>
+        <div class="kpi-value" id="expiringCount">0</div>
+        <div class="kpi-sub">Innerhalb 3 Jahre</div>
+      </div>
+      <div class="card kpi-card">
+        <h4>Gesamtleistung</h4>
+        <div class="kpi-value" id="totalCapacity">0 kWp/W</div>
+        <div class="kpi-sub">Installiert</div>
+      </div>
+    </div>
+    <article>
+      <h3>⚠️ Handlungsempfehlungen</h3>
+      <div id="recommendations"></div>
+    </article>
+  </section>
+
+  <section id="portfolioTab" class="tab-content">
+    <h2>Anlagenportfolio</h2>
+    <div id="portfolioTable"></div>
+  </section>
+
+  <section id="chartsTab" class="tab-content">
+    <h2>Analyse-Charts</h2>
+    <div class="grid">
+      <article>
+        <h4>Anlagengewichtung nach Typ (kWp)</h4>
+        <canvas id="typeChart" height="250"></canvas>
+      </article>
+      <article>
+        <h4>Jahresertragsverlauf (MWh)</h4>
+        <canvas id="yieldChart" height="250"></canvas>
+      </article>
+    </div>
+    <div class="grid" style="margin-top:2rem">
+      <article>
+        <h4>Performance vs. Erwartung (%)</h4>
+        <canvas id="performanceChart" height="250"></canvas>
+      </article>
+      <article>
+        <h4>EEG-Restlaufzeiten</h4>
+        <canvas id="remainingChart" height="250"></canvas>
+      </article>
+    </div>
+  </section>
+
+  <section id="settingsTab" class="tab-content">
+    <h2>API-Einstellungen</h2>
+    <form id="settingsForm">
+      <label>
+        API-URL
+        <input type="text" id="apiUrl" value="https://api.cernion.de/">
+      </label>
+      <label>
+        Tenant-ID
+        <input type="text" id="tenantId" value="agentic-hackathon">
+      </label>
+      <label>
+        API-Token (optional)
+        <input type="password" id="apiToken" placeholder="Bearer-Token">
+      </label>
+      <button type="button" onclick="testConnection()">Verbindung testen</button>
+      <button type="button" class="secondary" onclick="resetSettings()">Zurücksetzen</button>
+      <p id="testResult"></p>
+    </form>
+  </section>
+</main>
+
+<footer class="container">
+  <small>
+    Powered by <a href="https://cernion.de">Cernion a2mdm</a> &middot;
+    <a href="https://github.com/energychain/cernion-asset-portfolio-healthcheck">Quellcode</a>
+  </small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script src="api.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

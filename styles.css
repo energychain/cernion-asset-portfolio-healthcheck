@@ -1,0 +1,117 @@
+/* Asset Portfolio Health-Check Styles */
+
+.logo {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.kpi-card {
+  text-align: center;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #2ecc71, #f39c12, #e74c3c);
+}
+
+.kpi-card h4 {
+  margin-bottom: 0.5rem;
+  color: var(--pico-muted-color);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpi-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.kpi-sub {
+  font-size: 0.8rem;
+  color: var(--pico-muted-color);
+}
+
+.badge.warning {
+  background: var(--pico-color-amber-700);
+  color: #fff;
+}
+
+nav[aria-label="breadcrumb"] {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--pico-card-border-color);
+  padding-bottom: 0.5rem;
+}
+
+.tabs {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.tabs li {
+  margin: 0;
+}
+
+.tabs a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--pico-border-radius);
+  color: var(--pico-muted-color);
+  transition: all 0.2s;
+}
+
+.tabs a:hover {
+  color: var(--pico-primary);
+  background: rgba(255,255,255,0.05);
+}
+
+.tabs a.active {
+  color: var(--pico-primary);
+  background: rgba(52,152,219,0.15);
+  font-weight: 600;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+article {
+  margin-bottom: 1.5rem;
+}
+
+table.striped tbody tr:hover {
+  background: rgba(52,152,219,0.05);
+}
+
+tr.severity-high {
+  border-left: 3px solid #e74c3c;
+}
+
+tr.severity-medium {
+  border-left: 3px solid #f39c12;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+  .kpi-value {
+    font-size: 1.5rem;
+  }
+}
