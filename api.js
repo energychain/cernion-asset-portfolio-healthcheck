@@ -54,7 +54,7 @@ CernionAPI.prototype.getMelos = function() {
 CernionAPI.prototype.getTimeSeries = function(meloId, obis) {
   var self = this;
   return new Promise(function(resolve, reject) {
-    fetch(self.baseUrl + "api/edm/timeseries?meloId=" + encodeURIComponent(meloId) + "&obis=" + encodeURIComponent(obis || "1-0:2.7.0"), {
+    fetch(self.baseUrl + "api/edm/timeseries/" + encodeURIComponent(meloId) + "&obis=" + encodeURIComponent(obis || "1-0:2.7.0"), {
       method: "GET",
       headers: self._headers()
     })
