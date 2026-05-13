@@ -4,7 +4,7 @@
  */
 
 var CernionAPI = function(baseUrl, tenantId, token) {
-  this.baseUrl = (baseUrl || "https://api.cernion.de/").replace(/\/api\/\s*$/, "/");
+  this.baseUrl = (baseUrl || "https://api.cernion.de/").replace(/\/api\/$/, "").replace(/\/$/, "") + "/";
   this.tenantId = tenantId || "agentic-hackathon";
   this.token = token || "";
 };
