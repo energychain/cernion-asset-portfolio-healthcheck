@@ -216,3 +216,5 @@ var DEMO_YIELDS = {
     {"ts": "2025-01-01T23:00:00Z", "value": 0}
   ]
 };
+
+var api = new CernionAPI("https://api.cernion.de/", "agentic-hackathon");
